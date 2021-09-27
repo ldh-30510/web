@@ -1,25 +1,30 @@
 <?php
-  $username = $_POST[ 'username' ];
-  $password = $_POST[ 'password' ];
-  if ( !is_null( $username ) ) {
-    $jb_conn = mysqli_connect( 'localhost', 'codingfactory', '1234qwer', 'codingfactory.net_example' );
-    $jb_sql = "SELECT password FROM member WHERE username = '" . $username . "';";
-    $jb_result = mysqli_query( $jb_conn, $jb_sql );
-    while ( $jb_row = mysqli_fetch_array( $jb_result ) ) {
-      $encrypted_password = $jb_row[ 'password' ];
-    }
-    if ( is_null( $encrypted_password ) ) {
-      $wu = 1;
-    } else {
-      if ( password_verify( $password, $encrypted_password ) ) {
-        header( 'Location: login-ok.php' );
-      } else {
-        $wp = 1;
-      }
-    }
-  }
+  error_reporting( E_ALL );
+  ini_set( "display_errors", 1 );
 ?>
-
-
-
-
+<?php
+    class database{
+        public function dbConnect(){
+            global $conn;
+            $conn = mysqli_connect('192.168.0.30', 'root', '1234', 'snack');
+        }
+        public function snackdata(){
+            global $conn;
+            $sql = "SELECT * FROM snackdata";
+            $result =  mysqli_query($conn, $sql);
+            while($row = mysqli_fetch_array($result)){
+                echo '<h2>'.$row['title'].'</h2>';
+                echo $row['stock']."개<br>";
+                echo $row['pay']."원";
+            }
+        }
+        public function password(){
+            global $conn;
+            $sql = "SELECT password FROM password WHERE no=1";
+            $result = mysqli_query($conn, $sql);
+            $row = mysqli_fetch_array($result);
+            return $row;
+             // echo $row['password'];
+        }
+    }
+?>
