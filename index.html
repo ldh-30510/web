@@ -10,20 +10,19 @@
     <style>
         @import url('https://fonts.googleapis.com/css2? family= Jomhuria & display=swap');
     </style>
-    <script src="main.js"></script>
 </head>
 <body>
-    <script src="main.js"></script>
+    
     <section class="login-form">
         <h1>로그인</h1>
         <form action="">
             <div class="int-area">
-                <input type="text" name="id" id="id"
+                <input type="text" name="id" id="id_"
                 autocomplete="off" required>
                 <label for="id">USER NAME</label>
             </div>
             <div class="int-area">
-                <input type="password" name="pw" id="pw"
+                <input type="password" name="pw" id="pw_"
                 autocomplete="off" required>
                 <label for="pw">PASSWORD</label>
             </div>
@@ -33,6 +32,20 @@
             </div>
         </form>   
     </section>
+    <script>
+        document.getElementById('btn').onclick = function() {
+            var ID = document.getElementById('id_').value;
+            var pass = document.getElementById('pw_').value;
+            if(ID === "pi" && pass === "1234"){
+                alert("성공");
+                window.open('https://naver.com');
+                window.close("index.html");
+            }
+            else {
+                alert('실패');
+            }
 
+        }
+    </script>
 </body>
 </html>
